@@ -9,10 +9,10 @@ namespace HelloWorld
         //Used to set a playable characters stats
         struct Player
         {
-            public string playerName;
-            public int playerHealth;
-            public int playerDamage;
-            public int playerDefense;
+            public string _playerName;
+            public int _playerHealth;
+            public int _playerDamage;
+            public int _playerDefense;
         }
 
         //Used to set an items stats
@@ -56,13 +56,13 @@ namespace HelloWorld
             for(int i = 0; i < 5; i++)
             {
                 PlayerFight();
-                PlayerShop();
+                //PlayerShop();
             }
         }
 
         public void End()
         {
-            if(player1.playerHealth <= 0)
+            if(player1._playerHealth <= 0)
             {
                 Console.WriteLine("Congratulations Player2, you win!");
             }
@@ -75,23 +75,23 @@ namespace HelloWorld
         //Initializes two playable characters
         void InitializeCharacters()
         {
-            player1.playerName = "Player1";
-            player1.playerDefense = 10;
-            player1.playerHealth = 100;
-            player1.playerDamage = 0;
-            player2.playerName = "Player2";
-            player2.playerDefense = 10;
-            player2.playerHealth = 100;
-            player2.playerDamage = 0;
+            player1._playerName = "Player1";
+            player1._playerDefense = 10;
+            player1._playerHealth = 100;
+            player1._playerDamage = 0;
+            player2._playerName = "Player2";
+            player2._playerDefense = 10;
+            player2._playerHealth = 100;
+            player2._playerDamage = 0;
         }
 
         //Initializes any items.
         void InitializeItems()
         {
             longsword.itemName = "Longsword";
-            longsword.itemDamage = 15;
+            longsword.itemDamage = 25;
             broadsword.itemName = "Broadsword";
-            broadsword.itemDamage = 10;
+            broadsword.itemDamage = 15;
         }
 
         //Gets input from the player
@@ -117,22 +117,22 @@ namespace HelloWorld
             GetInput(out input, "Longsword", "Broadsword", "Welcome Player1, pick a weapon!");
             if (input == '1')
             {
-                player1.playerDamage = longsword.itemDamage;
+                player1._playerDamage = longsword.itemDamage;
             }
             else
             {
-                player1.playerDamage = broadsword.itemDamage;
+                player1._playerDamage = broadsword.itemDamage;
             }
 
             Console.Clear();
             GetInput(out input, "Longsword", "Broadsword", "Welcome Player2, pick a weapon!");
             if (input == '1')
             {
-                player2.playerDamage = longsword.itemDamage;
+                player2._playerDamage = longsword.itemDamage;
             }
             else
             {
-                player2.playerDamage = broadsword.itemDamage;
+                player2._playerDamage = broadsword.itemDamage;
             }
 
         }
@@ -161,52 +161,52 @@ namespace HelloWorld
         //This is where the players fight
         void PlayerFight()
         {
-            while (player1.playerHealth > 0 && player2.playerHealth > 0)
+            while (player1._playerHealth > 0 && player2._playerHealth > 0)
             {
                 //Displays both of the players stats on the screen
                 Console.Clear();
-                PrintPlayerStats(player1.playerName, player1.playerHealth, player1.playerDamage, player1.playerDefense);
-                PrintPlayerStats(player2.playerName, player2.playerHealth, player2.playerDamage, player2.playerDefense);
+                PrintPlayerStats(player1._playerName, player1._playerHealth, player1._playerDamage, player1._playerDefense);
+                PrintPlayerStats(player2._playerName, player2._playerHealth, player2._playerDamage, player2._playerDefense);
 
                 //Both players are given the option to either attack or defend.
                 char input = ' ';
-                GetInput(out input, "Attack", "Defend", "\nWhat would you like to do " + player1.playerName + "?");
+                GetInput(out input, "Attack", "Defend", "\nWhat would you like to do " + player1._playerName + "?");
                 if (input == '1')
                 {
-                    BlockAttack(ref player2.playerHealth, player1.playerDamage, player2.playerDefense);
-                    Console.WriteLine("\n" + player1.playerName + " delt " + (player1.playerDamage - player2.playerDefense) + " damage to " + player2.playerName);
+                    BlockAttack(ref player2._playerHealth, player1._playerDamage, player2._playerDefense);
+                    Console.WriteLine("\n" + player1._playerName + " delt " + (player1._playerDamage - player2._playerDefense) + " damage to " + player2._playerName);
                     Console.WriteLine("\nPress Enter to continue.");
                     Console.ReadKey();
                     Console.Clear();
                 }
                 else if(input == '2')
                 {
-                    BlockAttack(ref player1.playerHealth, player2.playerDamage, player1.playerDefense);
-                    Console.WriteLine("\n" + player1.playerName + " blocked " + (player2.playerDamage - player1.playerDefense) + " damage from " + player2.playerName);
+                    BlockAttack(ref player1._playerHealth, player2._playerDamage, player1._playerDefense);
+                    Console.WriteLine("\n" + player1._playerName + " blocked " + (player2._playerDamage - player1._playerDefense) + " damage from " + player2._playerName);
                     Console.WriteLine("\nPress Enter to continue");
                     Console.ReadKey();
                     Console.Clear();
                 }
                 //These are called again to keep th eplayer stats updated as the fight goes on.
-                PrintPlayerStats(player1.playerName, player1.playerHealth, player1.playerDamage, player1.playerDefense);
-                PrintPlayerStats(player2.playerName, player2.playerHealth, player2.playerDamage, player2.playerDefense);
+                PrintPlayerStats(player1._playerName, player1._playerHealth, player1._playerDamage, player1._playerDefense);
+                PrintPlayerStats(player2._playerName, player2._playerHealth, player2._playerDamage, player2._playerDefense);
 
-                GetInput(out input, "Attack", "Defend", "\nWhat would you like to do " + player2.playerName + "?");
+                GetInput(out input, "Attack", "Defend", "\nWhat would you like to do " + player2._playerName + "?");
                 if(input == '1')
                 {
-                    BlockAttack(ref player1.playerHealth, player2.playerDamage, player1.playerDefense);
-                    Console.WriteLine("\n" + player2.playerName + " delt " + (player2.playerDamage - player1.playerDefense) + " damage to " + player1.playerName);
+                    BlockAttack(ref player1._playerHealth, player2._playerDamage, player1._playerDefense);
+                    Console.WriteLine("\n" + player2._playerName + " delt " + (player2._playerDamage - player1._playerDefense) + " damage to " + player1._playerName);
                     Console.WriteLine("\nPress Enter to continue");
                     Console.ReadKey();
                 }
                 else if(input == '2')
                 {
-                    BlockAttack(ref player2.playerHealth, player1.playerDamage, player2.playerDefense);
-                    Console.WriteLine("\n" + player2.playerName + " blocked " + (player1.playerDamage - player2.playerDefense) + " damage from " + player1.playerName);
+                    BlockAttack(ref player2._playerHealth, player1._playerDamage, player2._playerDefense);
+                    Console.WriteLine("\n" + player2._playerName + " blocked " + (player1._playerDamage - player2._playerDefense) + " damage from " + player1._playerName);
                     Console.WriteLine("\nPress Enter to continue");
                     Console.ReadKey();
                 }
-
+                
                 _gameOver = true;
 
             }
@@ -221,23 +221,23 @@ namespace HelloWorld
             GetInput(out input, "Whetstone", "Adamite Potion", "Player 1, choose and item.");
             if (input == '1')
             {
-                player1.playerDamage += 20;
+                player1._playerDamage += 20;
             }
             else
             {
-                player1.playerDefense += 10;
-                player1.playerHealth += 5;
+                player1._playerDefense += 10;
+                player1._playerName += 5;
             }
             Console.Clear();
             GetInput(out input, "Whetstone", "Adamite Potion", "Player 2, choose and item.");
             if (input == '1')
             {
-                player2.playerDamage += 20;
+                player2._playerDamage += 20;
             }
             else
             {
-                player2.playerDefense += 10;
-                player2.playerHealth += 5;
+                player2._playerDefense += 10;
+                player2._playerName += 5;
             }
 
         }
