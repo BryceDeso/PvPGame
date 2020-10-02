@@ -88,6 +88,7 @@ namespace HelloWorld
         //Initializes any items.
         void InitializeItems()
         {
+
             longsword.itemName = "Longsword";
             longsword.itemDamage = 25;
             broadsword.itemName = "Broadsword";
@@ -187,7 +188,7 @@ namespace HelloWorld
                     Console.ReadKey();
                     Console.Clear();
                 }
-                //These are called again to keep th eplayer stats updated as the fight goes on.
+                //This is called again to keep the player stats updated as the fight goes on.
                 PrintPlayerStats(player1._playerName, player1._playerHealth, player1._playerDamage, player1._playerDefense);
                 PrintPlayerStats(player2._playerName, player2._playerHealth, player2._playerDamage, player2._playerDefense);
 
